@@ -82,7 +82,7 @@ You need to write one SQL query for each of the following questions. Below are t
        HAVING COUNT(DISTINCT passengers_id) BETWEEN 5 AND 7
    ) AS flights;
 
-   2. **Find the manufacturer and model of the airplane that has made the most trips for Olympic Airways from Athens to London between 2011-02-01 and 2017-07-14.**
+2. **Find the manufacturer and model of the airplane that has made the most trips for Olympic Airways from Athens to London between 2011-02-01 and 2017-07-14.**
       
    SELECT ap.manufacturer, ap.model
    FROM routes r, airports a1, airports a2, flights f, airplanes ap, airlineshasairplanes aha, airlines al
@@ -98,7 +98,7 @@ You need to write one SQL query for each of the following questions. Below are t
    ORDER BY COUNT(DISTINCT f.id) DESC
    LIMIT 1;
 
-   3. **Find the names and surnames of passengers who made all their trips with British Airways.**
+3. **Find the names and surnames of passengers who made all their trips with British Airways.**
 
    SELECT DISTINCT p.name, p.surname 
    FROM passengers p, flightshaspassengers fhp, flights f, airplanes ap, airlineshasairplanes aha, airlines al
@@ -109,7 +109,7 @@ You need to write one SQL query for each of the following questions. Below are t
    AND aha.airlines_id = al.id 
    AND al.name = "British Airways";
 
-   4. **For each airline that has more than 5 airplanes and operates more than 5 routes, find the name, code, number of airplanes, and number of routes.**
+4. **For each airline that has more than 5 airplanes and operates more than 5 routes, find the name, code, number of airplanes, and number of routes.**
 
    SELECT al.name AS airline, aha.airlinesid, COUNT(DISTINCT aha.airplanesid) AS "#airplanes", COUNT(DISTINCT r.id) AS "#routes"
    FROM airlines al, routes r, airlineshasairplanes aha
@@ -118,7 +118,7 @@ You need to write one SQL query for each of the following questions. Below are t
    GROUP BY aha.airlines_id
    HAVING COUNT(DISTINCT r.id) > 5 AND COUNT(DISTINCT aha.airplanes_id) > 5;
 
-   5. **Find the total visitors per airport where Aegean Airlines operates routes between 2011-01-01 and 2015-01-01.**
+5. **Find the total visitors per airport where Aegean Airlines operates routes between 2011-01-01 and 2015-01-01.**
       
    SELECT a.name AS airportname, COUNT(DISTINCT fhp.passengersid) AS "#passengers"
    FROM flightshaspassengers fhp, flights f, routes r, airlines al, airports a
@@ -130,7 +130,7 @@ You need to write one SQL query for each of the following questions. Below are t
    AND f.date BETWEEN "2011-01-01" AND "2015-01-01"
    GROUP BY a.name;
 
-   6. **Find how many passengers traveled from Athens to any destination more than 5 times between 2010-01-01 and 2015-01-01.**
+6. **Find how many passengers traveled from Athens to any destination more than 5 times between 2010-01-01 and 2015-01-01.**
       
    SELECT COUNT(*) AS "#passengers"
    FROM(
@@ -142,10 +142,9 @@ You need to write one SQL query for each of the following questions. Below are t
        AND city = "Athens"
        GROUP BY fhp.passengers_id
        HAVING COUNT(DISTINCT fhp.flights_id) > 5
-       ORDER BY 2 DESC
-   ) AS sub;
+       ORDER BY 2 DESC) AS sub;
 
-   7. **Find the airport with the most routes with different active airlines.**
+7. **Find the airport with the most routes with different active airlines.**
       
    SELECT ap.name AS airport_name, COUNT(DISTINCT r.id) AS "#routes", 
           COUNT(DISTINCT r.airlinesid) AS "#activeairlines"
@@ -157,7 +156,7 @@ You need to write one SQL query for each of the following questions. Below are t
    ORDER BY 2 DESC, 3 DESC
    LIMIT 1;
 
- 8. **Find the airline with the most travelers under 25 years old.**  
+8. **Find the airline with the most travelers under 25 years old.**  
 
    SELECT al.name AS airlines, COUNT(DISTINCT fhp.passengersid) AS "U25passengers"
    FROM airlines al, flightshaspassengers fhp, passengers p, flights f, routes r
@@ -170,7 +169,7 @@ You need to write one SQL query for each of the following questions. Below are t
    ORDER BY 2 DESC
    LIMIT 1;
 
-  9. **Find how many flights were executed by each airline with aircraft from the manufacturer Boeing.**
+9. **Find how many flights were executed by each airline with aircraft from the manufacturer Boeing.**
 
    SELECT * FROM (
        SELECT al.name, COUNT(DISTINCT f.id) AS flight_count
@@ -202,7 +201,7 @@ You need to write one SQL query for each of the following questions. Below are t
    ) AS sub
    ORDER BY sub.name ASC;
 
-   10. **Find the 5 airlines that passengers prefer the least for flights to and from London.**
+10. **Find the 5 airlines that passengers prefer the least for flights to and from London.**
 
     SELECT al.name, COUNT(DISTINCT fhp.passengers_id) AS "#passengers", COUNT(DISTINCT f.id) AS "#flights"
     FROM airlines al, flightshaspassengers fhp, routes r, airports ap, flights f
