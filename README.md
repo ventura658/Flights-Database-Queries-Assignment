@@ -204,8 +204,7 @@ You need to write one SQL query for each of the following questions. Below are t
 
    10. **Find the 5 airlines that passengers prefer the least for flights to and from London.**
 
-    SELECT al.name, COUNT(DISTINCT fhp.passengers_id) AS "#passengers", 
-           COUNT(DISTINCT f.id) AS "#flights"
+    SELECT al.name, COUNT(DISTINCT fhp.passengers_id) AS "#passengers", COUNT(DISTINCT f.id) AS "#flights"
     FROM airlines al, flightshaspassengers fhp, routes r, airports ap, flights f
     WHERE al.id = r.airlines_id
     AND (r.sourceid = ap.id OR r.destinationid = ap.id)
