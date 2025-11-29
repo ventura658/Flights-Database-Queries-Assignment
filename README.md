@@ -65,7 +65,6 @@ You need to write one SQL query for each of the following questions. Below are t
 - Use only basic SQL features covered in class.
 - Do not return duplicate records (as implemented in the queries).
 - Test them in your database environment.
-- 
 [Flights Database](https://github.com/ventura658/Flights-Database-Queries-Assignment/blob/15e5c6641bf3eb96dc7cd8942ba19282f969e2bf/flights.sql)
 
 1. **How many flights were carried out with 5 to 7 passengers from Athens?**
